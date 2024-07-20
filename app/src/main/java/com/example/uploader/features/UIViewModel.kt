@@ -32,7 +32,7 @@ class UIViewModel: ViewModel() {
                 uploadSingleImage(event.context, event.uri)
             }
             is UIEvent.MultipleImageChanged->{
-                uploadMultipleImages(event.uris, event.context)
+                uploadMultipleImages(event.context, event.uris)
             }
             is UIEvent.GetImages->{
                 getImages()
@@ -68,7 +68,7 @@ class UIViewModel: ViewModel() {
         })
 
     }
-        private fun uploadMultipleImages(uris: List<Uri>, context: Context){
+        private fun uploadMultipleImages(context: Context, uris: List<Uri>,){
         _uiState.value = UIState(isUploading = true)
             val uploader = MultipleFilesUploader(client, uris, context).store(true)
 
