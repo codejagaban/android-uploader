@@ -24,7 +24,7 @@ class UIViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(UIState())
     val uiState: StateFlow<UIState> = _uiState.asStateFlow()
 
-    private val client = UploadcareClient("PUBLIC_KEY","SECRET_KEY")
+    private val client = UploadcareClient("dc10a36db143e2574355","3f84c490a8ca6240df3b")
 
     fun onEvent(event: UIEvent){
         when(event){
@@ -68,7 +68,7 @@ class UIViewModel: ViewModel() {
         })
 
     }
-        private fun uploadMultipleImages(context: Context, uris: List<Uri>,){
+        private fun uploadMultipleImages(context: Context, uris: List<Uri>){
         _uiState.value = UIState(isUploading = true)
             val uploader = MultipleFilesUploader(client, uris, context).store(true)
 
