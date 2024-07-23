@@ -75,13 +75,13 @@ fun PhotoScreen(
     val singleImagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = {uri->
-            uri?.let { UIEvent.SingleImageChanged(it, context) }?.let { viewModel.onEvent(it) }
+            uri?.let { UIEvent.SingleImageChanged(context,it) }?.let { viewModel.onEvent(it) }
         }
     )
     val multipleImagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickMultipleVisualMedia(),
         onResult = {uris->
-            viewModel.onEvent(UIEvent.MultipleImageChanged(uris, context))
+            viewModel.onEvent(UIEvent.MultipleImageChanged(context,uris))
         }
     )
     LaunchedEffect(Unit) {
